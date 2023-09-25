@@ -1,55 +1,77 @@
 <main>
     <div class="grid">
     
-    <div >
-        <div>
-            <p><span *ngIf="creditCardForm.value.cardNumber === ''">0000 0000 0000 0000</span>{{ creditCardForm.value.cardNumber }}</p>
-            <p><span *ngIf="creditCardForm.value.name === ''">Jane Appleseed</span>{{ creditCardForm.value.name }}</p>
-            <p>
-                <span *ngIf="creditCardForm.value.expDateMonth === ''">00</span>{{creditCardForm.value.expDateMonth}} /
-                <span *ngIf="creditCardForm.value.expDateYear === ''">00</span>{{creditCardForm.value.expDateYear}}
-            </p>
-        </div>
-        <div>
-            <p><span *ngIf="creditCardForm.value.cvc === ''">000</span>{{ creditCardForm.value.cvc }}</p>
-        </div>
-    </div>
-        <form [formGroup]="creditCardForm">
-
-            <!-- Name Field -->
-            <label for="cardHolderName">Card Holder Name</label>
-            <input type="text" id="cardHolderName" placeholder="e.g Jane Appleseed" formControlName="name" required>
-            
-            <div *ngIf="creditCardForm.controls.name.invalid && (creditCardForm.controls.name.dirty || creditCardForm.controls.name.touched)">
-                <div *ngIf="creditCardForm.controls.name.errors?.['required']">Can't be blank.</div>
+        <section class="grid__cards-section" aria-hidden="true">
+            <div class="card-back">
+                <p class="card-back__cvc"><span *ngIf="creditCardForm.value.cvc === ''">000</span>{{ creditCardForm.value.cvc }}</p>
             </div>
-
-            <!-- Card Number Field-->
-            <label for="cardNumber">Card Number</label>
-            <input type="text" id="cardNumber" placeholder="e.g 1234 5678 9123 0000" formControlName="cardNumber" required>
-            
-            <div *ngIf="creditCardForm.controls.cardNumber.invalid && (creditCardForm.controls.cardNumber.dirty || creditCardForm.controls.cardNumber.touched)">
-                <div *ngIf="creditCardForm.controls.cardNumber.errors?.['required']">Can't be blank.</div>
-                <div *ngIf="creditCardForm.controls.cardNumber.errors?.['pattern']">Wrong Format, numbers only.</div>
+            <div class="card-front">
+                <svg class="card-front__logo" width="84" height="47" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="23.478" cy="23.5" rx="23.478" ry="23.5" fill="#fff"/><path d="M83.5 23.5c0 5.565-4.507 10.075-10.065 10.075-5.559 0-10.065-4.51-10.065-10.075 0-5.565 4.506-10.075 10.065-10.075 5.558 0 10.065 4.51 10.065 10.075Z" stroke="#fff"/></svg>
+                <p class="card-front__number"><span *ngIf="creditCardForm.value.cardNumber === ''">0000 0000 0000 0000</span>{{ creditCardForm.value.cardNumber }}</p>
+                <p class="card-front__name"><span *ngIf="creditCardForm.value.name === ''">JANE APPLESEED</span>{{ creditCardForm.value.name | uppercase}}</p>
+                <div class="card-front__date">
+                    <span *ngIf="creditCardForm.value.expDateMonth === ''">00</span>{{creditCardForm.value.expDateMonth}} /
+                    <span *ngIf="creditCardForm.value.expDateYear === ''">00</span>{{creditCardForm.value.expDateYear}}
+                </div>
             </div>
+        </section>
 
-            <!-- Expiration Date Fields -->
-            <label for="expDate">Exp. Date (mm/yy)</label>
-            
-            <input type="text" placeholder="MM" formControlName="expDateMonth">
-            <input type="text" placeholder="YY" formControlName="expDateYear">
+        <section class="grid__form-section">
+            <form [formGroup]="creditCardForm" class="card-form">
 
-            <!-- CVC Field -->
-            <label for="cvc">Cvc</label>
-            <input type="number" placeholder="e.g 123" formControlName="cvc">
-            
-            <div *ngIf="creditCardForm.controls.cvc.invalid && (creditCardForm.controls.cvc.dirty || creditCardForm.controls.cvc.touched)">
-                <div *ngIf="creditCardForm.controls.cvc.errors?.['required']">Can't be blank.</div>
-                <div *ngIf="creditCardForm.controls.cvc.errors?.['pattern']">Wrong Format, numbers only.</div>
-            </div>
+                <!-- Name Field -->
+                <div class="field-group">
+                    <label for="cardHolderName">CARD HOLDER NAME</label>
+                    <input 
+                        type="text" 
+                        id="cardHolderName" 
+                        placeholder="e.g Jane Appleseed" 
+                        formControlName="name"
+                        required>
+                    
+                    <div *ngIf="creditCardForm.controls.name.invalid && (creditCardForm.controls.name.dirty || creditCardForm.controls.name.touched)">
+                        <div *ngIf="creditCardForm.controls.name.errors?.['required']" class="alert-error">Can't be blank.</div>
+                    </div>
+                </div>
 
-            <!-- Submit Button-->
-            <button role="submit">Confirm</button>
-        </form>
+                <!-- Card Number Field-->
+                <div class="field-group">
+                    <label for="cardNumber">CARD NUMBER</label>
+                    <input type="text" id="cardNumber" placeholder="e.g 1234 5678 9123 0000" formControlName="cardNumber" required>
+                    
+                    <div *ngIf="creditCardForm.controls.cardNumber.invalid && (creditCardForm.controls.cardNumber.dirty || creditCardForm.controls.cardNumber.touched)">
+                        <div *ngIf="creditCardForm.controls.cardNumber.errors?.['required']" class="alert-error">Can't be blank.</div>
+                        <div *ngIf="creditCardForm.controls.cardNumber.errors?.['pattern']" class="alert-error">Wrong Format, numbers only.</div>
+                    </div>
+                </div>
+
+                <div class="col-2">
+                    <!-- Expiration Date Fields -->
+                    <div class="field-group">
+                        <label for="expDate">EXP. DATE (MM/YY)</label>
+                        
+                        <div class="col-2">
+                            <input type="text" placeholder="MM" formControlName="expDateMonth">
+                            <input type="text" placeholder="YY" formControlName="expDateYear">
+                        </div>
+                    </div>
+
+                    <!-- CVC Field -->
+                    <div class="field-group">
+                        <label for="cvc">CVC</label>
+                        <input type="text" placeholder="e.g 123" formControlName="cvc">
+                        
+                        <div *ngIf="creditCardForm.controls.cvc.invalid && (creditCardForm.controls.cvc.dirty || creditCardForm.controls.cvc.touched)">
+                            <div *ngIf="creditCardForm.controls.cvc.errors?.['required']" class="alert-error">Can't be blank.</div>
+                            <div *ngIf="creditCardForm.controls.cvc.errors?.['pattern']" class="alert-error">Wrong Format, numbers only.</div>
+                        </div>
+                    </div>
+                </div>
+        
+
+                <!-- Submit Button-->
+                <button role="submit">Confirm</button>
+            </form>
+        </section>
     </div>
 </main>
