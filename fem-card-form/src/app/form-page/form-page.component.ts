@@ -20,8 +20,12 @@ export class FormPageComponent {
       Validators.required,
       Validators.pattern(/^[0-9\s]*$/)
     ]),
-    expDateMonth: new FormControl(''),
-    expDateYear: new FormControl(''),
+    expDateMonth: new FormControl('', [
+      Validators.required
+    ]),
+    expDateYear: new FormControl('', [
+      Validators.required
+    ]),
     cvc: new FormControl('', [
       Validators.required,
       Validators.pattern("^[0-9]*$")

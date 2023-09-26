@@ -54,6 +54,9 @@
                             <input type="text" placeholder="MM" formControlName="expDateMonth" maxlength="2">
                             <input type="text" placeholder="YY" formControlName="expDateYear" maxlength="2">
                         </div>
+                        <div *ngIf="creditCardForm.controls.expDateMonth.invalid && (creditCardForm.controls.expDateMonth.dirty || creditCardForm.controls.expDateMonth.touched) || creditCardForm.controls.expDateYear.invalid && (creditCardForm.controls.expDateYear.dirty || creditCardForm.controls.expDateYear.touched)">
+                            <div *ngIf="creditCardForm.controls.expDateMonth.errors?.['required'] || creditCardForm.controls.expDateYear.errors?.['required']" class="alert-error">Can't be blank.</div>
+                        </div>
                     </div>
 
                     <!-- CVC Field -->

@@ -26,7 +26,7 @@
 
     // colors primary
     --color-error: hsl(0, 100%, 66%);
-    --gradient-input-border-active: linear-gradent(hsl(249, 99%, 64%), hsl(278, 94%, 30%));
+    --gradient-input-border-active: linear-gradient(0.25turn, hsl(249, 99%, 64%), hsl(278, 94%, 30%)) border-box;
 
     // border radius
     --border-radius: .5rem;
@@ -98,6 +98,22 @@ button {
     background-color: var(--color-very-dark-violet);
     border-radius: var(--border-radius);
     border: none;
+}
+
+input:focus,
+input:focus-visible {
+    outline: transparent;
+    background: linear-gradient(white, white) padding-box,
+                var(--gradient-input-border-active);
+    border: 1px solid transparent;
+}
+
+button:hover {
+    opacity: .8;
+}
+
+button:active {
+    opacity: 1;
 }
 
 .alert-error {
