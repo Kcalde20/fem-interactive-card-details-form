@@ -8,6 +8,16 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class FormPageComponent {
 
+  formSubmitted: boolean = false;
+
+  onSubmit() {
+    if(this.creditCardForm.valid) {
+      this.formSubmitted = true;
+    } else {
+      return;
+    }
+  }
+
   formatCardNumber(s: any) {
     return s.toString().replace(/\d{4}(?=.)/g, '$& ');
   }
