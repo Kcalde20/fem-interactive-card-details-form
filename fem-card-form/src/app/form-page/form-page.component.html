@@ -49,10 +49,9 @@
                     <!-- Expiration Date Fields -->
                     <div class="field-group">
                         <label for="expDate">EXP. DATE (MM/YY)</label>
-                        
                         <div class="col-2">
-                            <input type="text" placeholder="MM" formControlName="expDateMonth" maxlength="2">
-                            <input type="text" placeholder="YY" formControlName="expDateYear" maxlength="2">
+                            <input type="text" id="expDate" placeholder="MM" formControlName="expDateMonth" maxlength="2">
+                            <input type="text" id="expDateYear" placeholder="YY" formControlName="expDateYear" maxlength="2">
                         </div>
                         <div *ngIf="creditCardForm.controls.expDateMonth.invalid && (creditCardForm.controls.expDateMonth.dirty || creditCardForm.controls.expDateMonth.touched) || creditCardForm.controls.expDateYear.invalid && (creditCardForm.controls.expDateYear.dirty || creditCardForm.controls.expDateYear.touched)">
                             <div *ngIf="creditCardForm.controls.expDateMonth.errors?.['required'] || creditCardForm.controls.expDateYear.errors?.['required']" class="alert-error">Can't be blank.</div>
@@ -62,7 +61,7 @@
                     <!-- CVC Field -->
                     <div class="field-group">
                         <label for="cvc">CVC</label>
-                        <input type="text" placeholder="e.g 123" formControlName="cvc" maxlength="3">
+                        <input type="text" id="cvc" placeholder="e.g 123" formControlName="cvc" maxlength="3">
                         
                         <div *ngIf="creditCardForm.controls.cvc.invalid && (creditCardForm.controls.cvc.dirty || creditCardForm.controls.cvc.touched)">
                             <div *ngIf="creditCardForm.controls.cvc.errors?.['required']" class="alert-error">Can't be blank.</div>
@@ -73,7 +72,7 @@
         
 
                 <!-- Submit Button-->
-                <button role="submit">Confirm</button>
+                <button role="button">Confirm</button>
             </form>
         </section>
     </div>
