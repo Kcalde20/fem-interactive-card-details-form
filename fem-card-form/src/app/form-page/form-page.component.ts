@@ -8,13 +8,17 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class FormPageComponent {
 
+  formatCardNumber(s: any) {
+    return s.toString().replace(/\d{4}(?=.)/g, '$& ');
+  }
+
   creditCardForm = new FormGroup ({
     name: new FormControl('', [
       Validators.required
     ]),
     cardNumber: new FormControl('', [
       Validators.required,
-      Validators.pattern("^[0-9]*$")
+      Validators.pattern(/^[0-9\s]*$/)
     ]),
     expDateMonth: new FormControl(''),
     expDateYear: new FormControl(''),
