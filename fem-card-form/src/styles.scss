@@ -15,10 +15,6 @@
     // sets default font styles
     @include default-font;
 
-    // breakpoints
-    --mobile-break: 375px;
-    --desktop-break: 1440px;
-
     // colors neutral
     --color-white: hsl(0,0%, 100%);
     --color-light-grayish-violet: hsl(270, 3%, 87%);
@@ -57,6 +53,8 @@
     align-items: start;
     gap: 1.5rem;
     padding: 1rem;
+    max-inline-size: 25rem;
+    margin-inline: auto;
 }
 
 .field-group {
@@ -142,6 +140,9 @@ button:active {
     border-radius: 8px;
     color: var(--color-white);
     position: absolute;
+    -webkit-box-shadow: 22px 22px 67px -55px var(--color-dark-grayish-violet);
+    -moz-box-shadow: 22px 22px 67px -55px var(--color-dark-grayish-violet);
+    box-shadow: 22px 22px 67px -55px var(--color-dark-grayish-violet);
 }
 
 .card-front__number {
@@ -160,8 +161,8 @@ button:active {
 
 .card-front__date {
     position: absolute;
-    bottom: 1.3rem;
-    right: 1.5rem;
+    bottom: 24px;
+    right: 16px;
     font-size: 12px;
 }
 
@@ -185,6 +186,9 @@ button:active {
     position: absolute;
     top: 0;
     right: 0;
+    -webkit-box-shadow: 22px 22px 67px -55px var(--color-dark-grayish-violet);
+    -moz-box-shadow: 22px 22px 67px -55px var(--color-dark-grayish-violet);
+    box-shadow: 22px 22px 67px -55px var(--color-dark-grayish-violet);
 }
 
 .card-back__cvc {
@@ -194,17 +198,78 @@ button:active {
     font-size: 12px;
 }
 
-
-// tablet breakpoint styles
-@media only screen and (min-width: calc(var(--mobile-break) + 1px)) {
-    .grid {
-        display: grid;
-    }
-}
-
 // desktop breakpoint styles
-@media only screen and (min-width: var(--desktop-break)) {
+@media only screen and (min-width: 1440px) {
+    body {
+        height: 100%;
+        box-sizing: border-box;
+    }
     .grid {
-        display: grid;
+        grid-template-columns: 1fr 1fr;
+        background-image: url(./assets/images/bg-main-desktop.png);
+        background-position: left;
+        background-repeat: repeat-y;
+        background-size: 483px 100%;
+        block-size: 100vh;
+        align-items: center;
+        max-inline-size: 90rem;
+        padding-block-start: 0;
+    }
+
+    .grid__cards-section {
+        height: 530px;
+        width: 343px;
+        margin-inline-end: 5rem;
+    }
+
+    .card-back,
+    .card-front {
+        width: 447px;
+    }
+
+    .card-front {
+        bottom: unset;
+        left: unset;
+        top: 0;
+        right: 0;
+    }
+
+    .card-front__number {
+        position: absolute;
+        top:50%;
+        left: 32px;
+        font-size: 30px;
+    }
+    
+    .card-front__name {
+        position: absolute;
+        bottom: 24px;
+        left: 32px;
+        font-size: 16px;
+    }
+    
+    .card-front__date {
+        bottom: 24px;
+        right: 32px;
+        font-size: 16px;
+    }
+    
+    .card-front__logo {
+        top: 32px;
+        left: 32px;
+        scale: 100%;
+    
+    }
+
+    .card-back {
+        bottom: 0;
+        left: 0;
+        top: unset;
+        right: unset;
+    }
+
+    .card-back__cvc {
+        top: 45%;
+        font-size: 16px;
     }
 }
