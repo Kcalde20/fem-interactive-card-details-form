@@ -1,7 +1,0 @@
-- Fix validation
-- style forms
-- style grid layout form mobile + desktop
-- style cards
-- animate
-- Add success page
-- style success page
